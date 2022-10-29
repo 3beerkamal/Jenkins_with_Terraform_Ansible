@@ -12,7 +12,7 @@ pipeline {
         stage('Push Image'){
             steps{
                 withCredentials([string(credentialsId: 'docker_hub', variable: 'node_app')]) {
-                    sh 'docker login -u 3beerkamal -p ${node_app}'
+                    sh 'docker login -u 3beerkamal'
                     sh 'docker push abeer-node.js:$BUILD_TAG'
                 }
             }
