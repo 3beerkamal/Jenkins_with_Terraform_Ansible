@@ -1,17 +1,26 @@
 pipeline {
     agent any
     stages {
-        stage('build') {
+
+        //First using SCM I cloned the private Repo with credential
+
+        stage('build Image') {
             steps {
-                sh 'docker build . -t jenkins-node.js:$BUILD_TAG'
+                sh 'docker build . -t abeer-node.js:$BUILD_TAG'
             }
-            post {
-                success {
-                    sh 'echo sucess'
+        }
+
+        stage('Push Image'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                    sh 'docker login -u $USERNAME -p $PASSWORD'
+                    sh 'docker push abeer-node.js:$BUILD_TAG'
                 }
-                failure {
-                    sh 'fail'
-                }
+            }
+        }
+        stage('Deploy Image'){
+            steps{
+               
             }
         }
     }
