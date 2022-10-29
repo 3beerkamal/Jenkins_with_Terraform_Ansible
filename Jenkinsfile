@@ -6,14 +6,14 @@ pipeline {
 
         stage('build Image') {
             steps {
-                sh 'docker build . -t abeer-node.js:$BUILD_TAG'
+                sh 'docker build . -t 3beerkamal/abeer-node.js:$BUILD_TAG'
             }
         }
         stage('Push Image'){
             steps{
-                withDockerRegistry([credentialsId: 'node_cred', url: "https://docker.io/library/abeer-node.js"]){
+                withDockerRegistry([credentialsId: 'node_cred', url: ""]){
                     //sh 'docker login -u $USERNAME -p $PASSWORD'
-                    sh 'docker push abeer-node.js:$BUILD_TAG'
+                    sh 'docker push 3beerkamal/abeer-node.js:$BUILD_TAG'
                 }
             }
         }
