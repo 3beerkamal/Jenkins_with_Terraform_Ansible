@@ -11,9 +11,9 @@ pipeline {
         }
         stage('Push Image'){
             steps{
-                withDockerRegistry([credentialsId: "docker_hub", url: ""]){
+                withDockerRegistry([credentialsId: "docker_hub", url: "https://index.docker.io/v1/"]){
                     //sh 'docker login -u $USERNAME -p $PASSWORD'
-                    sh 'sudo docker push abeer-node.js:$BUILD_TAG'
+                    sh 'docker push abeer-node.js:$BUILD_TAG'
                 }
             }
         }
