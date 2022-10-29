@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'agent_1'}
+    agent {label 'agent_2'}
     stages {
 
         //First using SCM I cloned the private Repo with credential
@@ -16,6 +16,11 @@ pipeline {
                     sh 'docker login -u $USERNAME -p $PASSWORD'
                     sh 'docker push abeer-node.js:$BUILD_TAG'
                 }
+            }
+        }
+        stage('Deploy Image'){
+            steps {
+                sh 'docker run -d -t myapp abeer-node.js:$BUILD_TAG'
             }
         }
     }
