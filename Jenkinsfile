@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Push Image'){
             steps{
-                withDockerRegistry([credentialsId: 'myrepo2', url: ""]) {
+                withCredentials([string(credentialsId: 'docker_hub', variable: 'node_app')]) {
                     sh 'docker push abeer-node.js:$BUILD_TAG'
                 }
             }
