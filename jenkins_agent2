@@ -20,7 +20,7 @@ pipeline {
         stage('Deploy Image'){
             steps {
                 withDockerRegistry([credentialsId: 'node_cred', url: ""]){
-                    sh 'docker run -d -p 3030:3030 --name myapp 3beerkamal/abeer-node.js:$BUILD_TAG'
+                    sh 'docker run -d -p 3030:3030 --name mysecondapp 3beerkamal/abeer-node.js:$BUILD_TAG'
                 }
             }
         }
