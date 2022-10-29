@@ -11,8 +11,8 @@ pipeline {
         }
         stage('Push Image'){
             steps{
-                withCredentials([string(credentialsId: 'docker_hub2', variable: '3beer')]) {
-                    sh 'docker login -u 3beerkamal -p ${3beer}'
+                withCredentials([string(credentialsId: 'docker_hub2', variable: 'dockerhubpwd')]) {
+                    sh 'docker login -u 3beerkamal -p ${dockerhubpwd}'
                     sh 'docker push abeer-node.js:$BUILD_TAG'
                 }
             }
