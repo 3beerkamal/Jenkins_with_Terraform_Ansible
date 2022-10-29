@@ -9,12 +9,13 @@ pipeline {
                 sh 'docker build . -t abeer-node.js:$BUILD_TAG'
             }
         }
-
         stage('Push Image'){
-            withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     sh 'docker login -u $USERNAME -p $PASSWORD'
                     sh 'docker push abeer-node.js:$BUILD_TAG'
                 }
+            }
         }
         stage('Deploy Image'){
             steps {
