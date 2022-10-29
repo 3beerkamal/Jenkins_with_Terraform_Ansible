@@ -19,7 +19,10 @@ pipeline {
         }
         stage('Deploy Image'){
             steps {
-                sh 'docker run -d -t myapp 3beerkamal/abeer-node.js:$BUILD_TAG'
+                steps{
+                withDockerRegistry([credentialsId: 'node_cred', url: ""]){
+                    sh 'docker run -d -t myapp 3beerkamal/abeer-node.js:$BUILD_TAG'
+                }
             }
         }
     }
