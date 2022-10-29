@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy Image'){
             steps {
-                sh 'docker run -d -t myapp abeer-node.js:$BUILD_TAG'
+                sh 'docker run -d -t myapp 3beerkamal/abeer-node.js:$BUILD_TAG'
             }
         }
     }
