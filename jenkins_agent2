@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'agent_1'}
+    agent {label 'agent_2'}
     stages {
 
         //First using SCM I cloned the private Repo with credential
