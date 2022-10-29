@@ -13,7 +13,7 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     sh 'docker login -u $USERNAME -p $PASSWORD'
-                    sh 'docker push abeer-node.js:$BUILD_TAG'
+                    sh 'sudo docker push abeer-node.js:$BUILD_TAG'
                 }
             }
         }
